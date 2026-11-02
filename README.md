@@ -43,7 +43,9 @@ Expect **roughly 9k to 13k tokens per new session**. Your number depends on your
 | Claude Code 2.1.284, headless run | 35,207 | 26,429 | **8,778** |
 | [Original Reddit post](https://www.reddit.com/r/ClaudeCode/comments/1w2ja43/tip_instantly_save_10k_tokens_on_every_new_session/), `/context` | 30k | 19.8k | **about 10k** |
 
-The two headless rows are single runs on one Windows PC, using Haiku and the same plugins and connectors, with total context read from the usage report. They are examples, not a benchmark. Run `/context` for your own number.
+The two headless rows are single runs on one Windows PC, using Haiku and the same plugins and connectors, with total context read from the usage report. Run `/context` for your own number.
+
+**[See the full benchmark](BENCHMARK.md):** on Claude Opus 5.5 at high effort, with only this setting changed, it saved **13,354 tokens per request (36.8%)**. On a small coding task, total tokens sent fell 23.4% and API-equivalent cost fell about 7%.
 
 ## What changes
 
@@ -76,6 +78,10 @@ It shrinks the context each session starts with. How much that changes your bill
 ### Does it work on my version?
 
 Versions 2.1.284 and 2.1.316 were tested and both list the setting. Claude Code 2.1.81 does not appear to include it. That version still started normally with the key present, but the setting probably does nothing there. Update first if `/context` shows no change.
+
+### Does it affect the Claude Docs connector?
+
+Possibly in scripts. With this setting off, Claude Docs tools were missing at startup in many `claude -p` test runs, and the cause is unproven. They worked in the one interactive session checked. If you rely on them, run `/mcp` to check.
 
 ### Will I be asked to approve the change?
 
